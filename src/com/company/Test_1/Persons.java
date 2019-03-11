@@ -26,8 +26,8 @@ public class Persons {
 
     // Getters
     public String getName() {
-        if(name != null && !name.equals("\n")  && !name.equals("\t") && !name.equals(" ") && name.length() > 2) {
-            return name;
+        if(name != null && !name.equals("\n") && !name.equals("\t") && !name.equals(" ") && name.trim().length() > 2) {
+//            return name;
         } else {
             System.out.println("\t\tError! You enter incorrect name!");
             System.out.print("\t\tPlease enter correct name: ");
@@ -37,11 +37,35 @@ public class Persons {
         return name;
     }
 
-    public String surName() {
+    public String getSurName() {
+        if(surName != null && !surName.equals("\n") && !surName.equals("\t") && !surName.equals(" ") && surName.trim().length() > 2){
+            return surName;
+        } else {
+            System.out.println("\t\tError! You enter incorrect surName!");
+            System.out.println("\t\tPlease enter correct surName: ");
+            setSurName(surName);
+            getSurName();
+        }
         return surName;
     }
 
     public int getAge() {
+        if(age > 0 && age < 7) {
+            System.out.println("Your're babe");
+        } else if(age > 6 && age < 18) {
+            System.out.println("Your're schoolchild ");
+        } else if(age > 18 && age < 25) {
+            System.out.println("Your're student ");
+        } else if(age > 25&& age < 60) {
+            System.out.println("Your're working person ");
+        } else if(age > 60 && age < 90) {
+            System.out.println("Your're pensioner ");
+        } else{
+            System.out.println("\t\tError! You enter incorrect age!");
+            System.out.print("\t\tPlease enter correct age: ");
+            setAge(age);
+            getAge();
+        }
         return age;
     }
 
@@ -60,14 +84,29 @@ public class Persons {
     }
 
     public void setSurName(String surName) {
+        try{
+            surName = br.readLine();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
         this.surName = surName;
     }
 
     public void setAge(int age) {
+        try{
+            age = Integer.parseInt(br.readLine());
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
         this.age = age;
     }
 
     public void setLocation(String location) {
+        try{
+            location = br.readLine();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
         this.location = location;
     }
 
