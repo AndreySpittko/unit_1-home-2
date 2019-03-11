@@ -23,7 +23,7 @@ public class Person {
     }
 
     public String getName() {
-        if(name != null){
+        if(name != null && !name.equals("\n")  && !name.equals("\t") && !name.equals(" ")){
             return name;
         } else{
             System.out.println("\t\tError! You enter incorrect name!");
@@ -39,16 +39,23 @@ public class Person {
     }
 
     public void setName(String name) {
-        try {
-            name = br.readLine();
-        } catch (IOException e) {
+//        try {
+            name = getName();
+            this.name = name;
+            if(name != null && !name.equals("\n")  && !name.equals("\t") && !name.equals(" ")){
+            } else{
+                System.out.println("\t\tError! You enter incorrect name!");
+                System.out.print("\t\tPlease enter correct name: ");
+                setName(name);
+            }
+/*        } catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
         this.name = name;
     }
 
     public String getSurName() {
-        if(surName != null) {
+        if(surName != null && surName != "\n" && surName != "\t" && surName != " ") {
             return  surName;
         } else {
             System.out.println("\t\tError! You enter incorrect surname!");
@@ -124,6 +131,6 @@ public class Person {
     }
 
     public void showInfo() {
-        System.out.printf("Person - %s %s. Age is %d year. Live in %s.\n", getName(), getSurName(), getAge(), getLocation());
+        System.out.printf("Persons - %s %s. Age is %d year. Live in %s.\n", getName(), getSurName(), getAge(), getLocation());
     }
 }
