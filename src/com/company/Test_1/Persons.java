@@ -70,6 +70,14 @@ public class Persons {
     }
 
     public String getLocation() {
+        if(location != null && location.equals("\t") && location.equals(" ") && location.equals("\n") && location.trim().length() > 2) {
+            return location;
+        } else {
+            System.out.println("\t\tError! You enter incorrect location!");
+            System.out.println("\t\tPlease enter correct location: ");
+            setLocation(location);
+            getLocation();
+        }
         return location;
     }
 
