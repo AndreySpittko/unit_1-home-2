@@ -3,6 +3,9 @@ package com.company;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 
 public abstract class Person {
 
@@ -13,6 +16,8 @@ public abstract class Person {
     private String surName;
     private  int age;
     private String location;
+    private Gender gender;
+    private Date birthDay;
 
     // Constructors
     public Person() {}
@@ -22,6 +27,15 @@ public abstract class Person {
         this.surName = surName;
         this.age = age;
         this.location = location;
+    }
+
+    public Person(String name, String surName, int age, String location, int yearOfBirth, int monthOfBirth, int dayOfBirth) {
+        this.name = name;
+        this.surName = surName;
+        this.age = age;
+        this.location = location;
+        GregorianCalendar calendar = new GregorianCalendar(yearOfBirth, monthOfBirth, dayOfBirth);
+        this.birthDay = calendar.getTime();
     }
 
     // Getters
@@ -87,6 +101,15 @@ public abstract class Person {
         return location;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
+    public Date getBirthDay() {
+        return birthDay;
+    }
+
+
     // Setters
     public void setName(String name) {
         try{
@@ -123,6 +146,14 @@ public abstract class Person {
         }
         this.location = location;
     }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
+    }
+
 
     public void showName() {
         System.out.printf("person name: \t%s\n", getName());
