@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 
-public abstract class Person {
+public /*abstract*/ class Person {
 
     public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -30,10 +30,7 @@ public abstract class Person {
     }
 
     public Person(String name, String surName, int age, String location, int yearOfBirth, int monthOfBirth, int dayOfBirth) {
-        this.name = name;
-        this.surName = surName;
-        this.age = age;
-        this.location = location;
+        this(name, surName, age, location);
         GregorianCalendar calendar = new GregorianCalendar(yearOfBirth, monthOfBirth, dayOfBirth);
         this.birthDay = calendar.getTime();
     }
@@ -60,7 +57,7 @@ public abstract class Person {
             }
         } else {
             System.out.println("\t\tError! You enter incorrect surName!");
-            System.out.println("\t\tPlease enter correct surName: ");
+            System.out.print("\t\tPlease enter correct surName: ");
             setSurName(surName);
             getSurName();
         }
@@ -88,13 +85,13 @@ public abstract class Person {
     }
 
     public String getLocation() {
-        if(location != null && location.equals("\t") && location.equals(" ") && location.equals("\n") && location.trim().length() > 2) {
-            if(location.length() > 50) {
+        if(location != null && !location.equals("\t") && !location.equals(" ") && !location.equals("\n") && location.trim().length() > 2) {
+/*            if(location.length() > 50) {
                 return location.substring(0, 50);
-            }
+            }*/
         } else {
             System.out.println("\t\tError! You enter incorrect location!");
-            System.out.println("\t\tPlease enter correct location: ");
+            System.out.print("\t\tPlease enter correct location: ");
             setLocation(location);
             getLocation();
         }
@@ -154,8 +151,23 @@ public abstract class Person {
         this.birthDay = birthDay;
     }
 
+    public void showFullInfo() {
+        String infoAboutPerson = String.format("Person name:\t%1$s\t\tyour age - %2$d and birthDay is %3$tY-%3$tB-%3$td\n\t\tyour gender - %4$s\n\t\tyou from - %5$s\n", fullName(), getAge(), getBirthDay(), getGender(), getLocation());
+        System.out.println(infoAboutPerson);
+//        String infoAboutPerson = String.format("Person name:\t%s\n\t", fullName());
+//        String infoAboutPerson1 = String.format("Person name:\t%1$s %2$s\n\t\t your age - %3$d and birthDay is %4$tY-%4$tB-%4$td\n\t\tyour gender - %5$s\n\t\tyour from - %6$s\n\n", getName(), getSurName(), getAge(), getBirthDay(), getGender(), getLocation());
+//        return infoAboutPerson;
+    }
 
-    public void showName() {
-        System.out.printf("person name: \t%s\n", getName());
+    public void showShortInfo(){
+        String showInfoPerson = String.format("Person name:\t%1$s\t\tyour age - %2$d\n\t\tyou from - %3$s", fullName(), getAge(), getLocation());
+        System.out.println(showInfoPerson);
+    }
+
+
+    public String fullName() {
+        String fullName = String.format("%s %s\n", getName(), getSurName());
+//        System.out.printf("%s %s\n", getName(), getSurName());
+        return fullName;
     }
 }
