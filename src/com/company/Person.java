@@ -27,7 +27,9 @@ public abstract class Person {
     // Getters
     public String getName() {
         if(name != null && !name.equals("\n") && !name.equals("\t") && !name.equals(" ") && name.trim().length() > 2) {
-//            return name;
+            if(name.length() > 30) {
+                return name.substring(0, 30);
+            }
         } else {
             System.out.println("\t\tError! You enter incorrect name!");
             System.out.print("\t\tPlease enter correct name: ");
@@ -39,7 +41,9 @@ public abstract class Person {
 
     public String getSurName() {
         if(surName != null && !surName.equals("\n") && !surName.equals("\t") && !surName.equals(" ") && surName.trim().length() > 2){
-            return surName;
+            if(surName.length() > 30){
+                return surName.substring(0, 30);
+            }
         } else {
             System.out.println("\t\tError! You enter incorrect surName!");
             System.out.println("\t\tPlease enter correct surName: ");
@@ -71,7 +75,9 @@ public abstract class Person {
 
     public String getLocation() {
         if(location != null && location.equals("\t") && location.equals(" ") && location.equals("\n") && location.trim().length() > 2) {
-            return location;
+            if(location.length() > 50) {
+                return location.substring(0, 50);
+            }
         } else {
             System.out.println("\t\tError! You enter incorrect location!");
             System.out.println("\t\tPlease enter correct location: ");
@@ -120,4 +126,5 @@ public abstract class Person {
 
     public void showName() {
         System.out.printf("person name: \t%s\n", getName());
-    }}
+    }
+}
